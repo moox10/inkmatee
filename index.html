@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ar" dir="rtl" class="is-loading">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.addEventListener("beforeunload", function () {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    });
+  </script>
+  <title>Ink Mate | متجر الطابعات</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Changa:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    @media (max-width: 1100px) {
+      body .site-header {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0.58rem 0.8rem !important;
+        border-radius: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 0.5rem !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+      }
+      body .site-header nav {
+        display: flex !important;
+        gap: 0.85rem !important;
+        flex: 0 0 auto !important;
+      }
+      body .site-header .pill {
+        display: inline-flex !important;
+        flex: 0 0 auto !important;
+        font-size: 0.92rem !important;
+        padding: 0.52rem 0.95rem !important;
+      }
+      body .site-header .menu-dots {
+        display: none !important;
+      }
+      body .site-header .logo {
+        display: none !important;
+      }
+      body .site-header .logo-copy strong {
+        display: inline-block !important;
+        font-size: 1.05rem !important;
+      }
+      body .site-header .quick-menu {
+        display: none !important;
+      }
+      body .print-loader {
+        display: grid !important;
+      }
+    }
+  </style>
+</head>
+<body class="is-loading">
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-stage">
+      <div class="loader-vfx" aria-hidden="true">
+        <span class="vfx-ring"></span>
+        <span class="vfx-ring ring-2"></span>
+        <span class="ink-drop c"></span>
+        <span class="ink-drop m"></span>
+        <span class="ink-drop y"></span>
+      </div>
+      <div class="loader-logo-wrap">
+        <img class="loader-logo" src="logo.png" alt="Ink Mate logo" />
+      </div>
+      <div class="print-loader" aria-hidden="true">
+        <div class="printer-body">
+          <span class="printer-light"></span>
+          <span class="printer-slot"></span>
+        </div>
+        <div class="paper-feed">
+          <div class="paper-sheet">
+            <span class="print-line"></span>
+            <span class="print-line short"></span>
+            <span class="print-line"></span>
+            <span class="ink-cmyk"></span>
+          </div>
+        </div>
+      </div>
+      <h2 class="loader-slogan" aria-label="Ink Mate رفيقك المثالي للطباعة">
+        <span>Ink Mate</span>
+        <span>رفيقك المثالي للطباعة</span>
+      </h2>
+      <div class="loader-pulse" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <p class="loader-status" id="loaderStatus">جاري تجهيز العرض<span></span></p>
+    </div>
+  </div>
+
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+
+  <canvas id="aurora" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <a class="logo magnetic" href="#">
+      <img class="nav-logo" src="logo.png" alt="Ink Mate" />
+      <span class="logo-copy">
+        <strong>Ink Mate</strong>
+      </span>
+    </a>
+    <nav>
+      <a class="magnetic" href="#products">الطابعات</a>
+      <a class="magnetic" href="#services">الخدمات</a>
+      <a class="magnetic" href="#about">من نحن</a>
+      <a class="magnetic" href="#contact">تواصل</a>
+    </nav>
+    <button class="menu-dots magnetic" id="menuToggle" aria-label="فتح القائمة" aria-controls="quickMenu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <button class="pill magnetic">ابدأ الطلب الآن</button>
+    <div class="quick-menu" id="quickMenu" role="menu" aria-label="القائمة السريعة">
+      <a href="#products" role="menuitem">الطابعات</a>
+      <a href="#services" role="menuitem">الخدمات</a>
+      <a href="#locations" role="menuitem">مواقعنا</a>
+      <a href="#contact" role="menuitem">تواصل</a>
+      <a href="#contact" role="menuitem">اطلب استشارة</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero reveal" id="hero">
+      <p class="kicker">متخصصين بالطابعات والاحبار</p>
+      <h1 class="headline" id="headline">
+        <span data-line="1">طابعات بسعر يناسبك</span>
+      </h1>
+      <div class="hero-main-actions">
+        <a class="hero-action filled magnetic gate-action" href="#products">تصفح طابعاتنا</a>
+        <a class="hero-action magnetic gate-action" href="#contact">اطلب استشارة</a>
+      </div>
+      <p class="lead">في Ink Mate نوفر لك طابعات منزلية ومكتبية، أحبار أصلية، وأجهزة كمبيوتر ولابتوبات مع ملحقاتها. كل ما تحتاجه للعمل والدراسة بجودة مضمونة وسعر يناسبك.</p>
+      <div class="hero-trust" aria-label="مميزات Ink Mate">
+        <article class="trust-card">
+          <small>أحبار أصلية</small>
+          <strong>جودة طباعة ثابتة</strong>
+        </article>
+        <article class="trust-card">
+          <small>ضمان</small>
+          <strong>رسمي على الأجهزة</strong>
+        </article>
+        <article class="trust-card">
+          <small>تركيب وتشغيل</small>
+          <strong>إعداد كامل للطابعة</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="marquee reveal" aria-label="ميزات Ink Mate">
+      <div class="marquee-glow" aria-hidden="true"></div>
+      <div class="track-row">
+        <div class="track track-main">
+          <span>طابعات احترافيه</span>
+          <span>ضمان رسمي وموثوق</span>
+          <span>صيانه</span>
+          <span>خيارات تناسب ميزانيتك</span>
+          <span>كمبيوترات ولابتوبات</span>
+          <span>طابعات احترافيه</span>
+          <span>ضمان رسمي وموثوق</span>
+          <span>صيانه</span>
+          <span>خيارات تناسب ميزانيتك</span>
+          <span>كمبيوترات ولابتوبات</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="work-grid reveal">
+      <article class="card tilt parallax featured-product" data-speed="0.08">
+        <div class="featured-head">
+          <div class="featured-copy">
+            <p>المنتج الأول</p>
+            <h2>HP LaserJet Pro MFP M127fw</h2>
+            <strong>طباعة، نسخ، مسح ضوئي، فاكس</strong>
+            <div class="feature-pills">
+              <span>21 صفحة/الدقيقة</span>
+              <span>600x600 dpi</span>
+              <span>ADF</span>
+              <span>ليزر أبيض وأسود</span>
+            </div>
+          </div>
+          <figure class="product-media">
+            <img src="download.jpeg" alt="HP LaserJet Pro MFP M127fw" loading="lazy" />
+          </figure>
+        </div>
+        <ul class="product-specs">
+          <li>تقنية الطباعة: ليزر أبيض وأسود (Monochrome).</li>
+          <li>سرعة الطباعة: تصل إلى 21 صفحة في الدقيقة.</li>
+          <li>الدقة: تصل إلى 600x600 نقطة في البوصة.</li>
+          <li>الشاشة: شاشة لمس ملونة 3 بوصة (أو 3.5 بوصة حسب الإصدار).</li>
+          <li>الميزات: وحدة تغذية تلقائية للمستندات (ADF) للمسح والنسخ.</li>
+        </ul>
+      </article>
+      <article class="card tilt parallax product-card" data-speed="0.12">
+        <p>المنتج الثاني</p>
+        <h2>HP LaserJet Pro M1536dnf</h2>
+        <strong>طباعة، نسخ، مسح ضوئي، فاكس</strong>
+        <div class="feature-pills">
+          <span>25 صفحة/الدقيقة</span>
+          <span>Duplex</span>
+          <span>1200 dpi</span>
+          <span>USB + Ethernet</span>
+        </div>
+        <figure class="product-media">
+          <img src="HP LaserJet Pro M1536dnf.jpeg" alt="HP LaserJet Pro M1536dnf" loading="lazy" />
+        </figure>
+        <ul class="product-specs">
+          <li>التقنية: ليزر أحادية اللون (أبيض وأسود).</li>
+          <li>السرعة: تصل إلى 25 صفحة في الدقيقة (A4).</li>
+          <li>الميزات: طباعة على الوجهين تلقائيًا (Duplex).</li>
+          <li>الدقة: تصل إلى 1200 نقطة في البوصة (للمسح الضوئي).</li>
+          <li>الاتصال: USB و Ethernet (شبكة سلكية).</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="services" class="services panel-section reveal">
+      <h3>خدماتنا</h3>
+      <div class="service-list">
+        <article>
+          <h4>إمداد الحبر</h4>
+          <p>توفير أحبار أصلية بجودة ثابتة للمكاتب والاستخدام المنزلي.</p>
+        </article>
+        <article>
+          <h4>صيانة سريعة</h4>
+          <p>فحص وصيانة احترافية للطابعات مع دعم فني واضح وسريع.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="locations" class="locations panel-section reveal">
+      <h3>مواقعنا</h3>
+      <div class="location-list">
+        <article class="location-card">
+          <span class="pin" aria-hidden="true"></span>
+          <h4>الخرطوم</h4>
+          <p>جوار صينية القندول</p>
+        </article>
+        <article class="location-card">
+          <span class="pin" aria-hidden="true"></span>
+          <h4>ود مدني</h4>
+          <p>متواجدون لخدمتك داخل المدينة</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="about panel-section reveal">
+      <p>نقدم حلول طباعة متكاملة بجودة عالية وخيارات تناسب الأفراد والشركات.</p>
+    </section>
+
+    <section id="contact" class="services panel-section reveal">
+      <h3>للتواصل مع الادارة</h3>
+      <div class="service-list">
+        <article>
+          <h4>ابو بكر عمر الزين</h4>
+          <p>أضف الرقم هنا</p>
+        </article>
+        <article>
+          <h4>الزين عمر الزين</h4>
+          <p>أضف الرقم هنا</p>
+        </article>
+        <article>
+          <h4>واتساب</h4>
+          <p>أضف رقم التواصل هنا</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="brand-motto reveal" aria-label="شعارنا">
+      <p class="motto-kicker">شعارنا</p>
+      <h3>الثقه والضمان</h3>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
